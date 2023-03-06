@@ -1,8 +1,13 @@
 import { styled } from "@mui/material/styles";
 
 const Container = styled("div")({
+  border: "solid 3px white",
+  borderRadius: "20px",
+  maxWidth: "fit-content",
+  margin: "auto",
   marginTop: "60px",
   marginBottom: "20px",
+  padding: "20px",
 });
 
 const CustomInput = styled("input")({
@@ -10,6 +15,7 @@ const CustomInput = styled("input")({
   display: "flex",
   margin: "auto",
   marginTop: "30px",
+  marginBottom: "30px",
   justifyContent: "center",
   border: "solid 3px #3fe0d0",
   borderRadius: "50px",
@@ -26,10 +32,10 @@ const CustomLabel = styled("label")({
   display: "flex",
   margin: "auto",
   justifyContent: "center",
-  marginTop: "20px",
   color: "white",
   fontSize: "16px",
   fontWeight: "bolder",
+  marginTop: "30px",
 });
 
 export { CustomInput, CustomLabel, Container };
