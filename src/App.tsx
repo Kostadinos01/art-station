@@ -1,12 +1,12 @@
 import React from "react";
-import ImagesDisplay from "./components/ImagesDisplay";
 import Input from "./components/Input";
+import Images from "./sections/Images";
 
 function App() {
   return (
     <>
       <Input />
-      <ImagesDisplay />
+      <Images />
     </>
   );
 }
