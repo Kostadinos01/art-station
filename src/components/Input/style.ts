@@ -14,11 +14,11 @@ const CustomInput = styled("input")({
   border: "solid 3px #3fe0d0",
   borderRadius: "50px",
   backgroundColor: "#3fe0d0",
-  width: "1000px",
+  width: "950px",
   height: "35px",
   fontSize: "15px",
   outline: "none",
-  cursor: "pointer",
+  fontWeight: "bolder",
 });
 
 const CustomLabel = styled("label")({
@@ -27,6 +27,9 @@ const CustomLabel = styled("label")({
   margin: "auto",
   justifyContent: "center",
   marginTop: "20px",
+  color: "white",
+  fontSize: "16px",
+  fontWeight: "bolder",
 });
 
 export { CustomInput, CustomLabel, Container };

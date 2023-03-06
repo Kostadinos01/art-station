@@ -3,13 +3,19 @@ import { Container, CustomInput, CustomLabel } from "./style";
 
 export default function Input() {
   const [prompts, setPrompts] = useState<string>("");
+  const [extendedPrompts, setExtendedPrompts] = useState<string>("");
 
   const handleEnter = (event: any) => {
-    event.preventDefault();
-
-    if (event.key === "Enter" && prompts.length) {
+    if (event.key === "Enter") {
       setPrompts("");
+      setExtendedPrompts("This is the extended version of the user prompts");
+      console.log("Enter Key Pressed");
     }
+  };
+
+  const handleChange = (event: any) => {
+    setPrompts(event.target.prompts);
+    setExtendedPrompts(event.target.extendedPrompts);
   };
 
   return (
@@ -18,15 +24,22 @@ export default function Input() {
         The first input is for you to type your own prompts.
       </CustomLabel>
       <CustomInput
-        onKeyPress={handleEnter}
+        type="text"
+        value={prompts}
+        onChange={handleChange}
+        onKeyDown={handleEnter}
         placeholder="Type Your Prompts..."
       />
       <CustomLabel>
         The second input will extend the prompts that you provided in the first
         input. Also you have the option to edit it in case you don't like some
-        of the prompts.
+        of the extra prompts.
       </CustomLabel>
-      <CustomInput />
+      <CustomInput
+        type="text"
+        value={extendedPrompts}
+        onChange={handleChange}
+      />
     </Container>
   );
 }

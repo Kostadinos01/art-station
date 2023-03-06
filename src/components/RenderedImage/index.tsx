@@ -8,7 +8,7 @@ interface CustomProps {
 
 export default function RenderedImage({ src }: CustomProps) {
   return (
-    <Grid xs={3}>
+    <Grid>
       <CustomImage src={src} />
     </Grid>
   );
