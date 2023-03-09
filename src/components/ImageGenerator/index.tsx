@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Container, CustomInput, CustomLabel, CustomButton } from "./style";
+import { Container, CustomInput, CustomButton } from "./style";
 import axios from "axios";
 import { Grid } from "@mui/material";
 import RenderedImage from "../RenderedImage";
