@@ -11,8 +11,8 @@ import { Grid } from "@mui/material";
 import RenderedImage from "../RenderedImage";
 
 export default function ImageGenerator() {
-  const [prompt, setPrompt] = useState<string | number>("");
-  const [image, setImage] = useState<string | number>("");
+  const [prompt, setPrompt] = useState<string>("");
+  const [image, setImage] = useState<string>("");
 
   const generate = async (prompt: any) => {
     try {
@@ -45,17 +45,10 @@ export default function ImageGenerator() {
           onChange={handleChange}
           placeholder="Type Your Prompts..."
         />
-
-        {image ? (
-          <>
-            <CustomLabel>
-              Through our software we optimize your prompt. Please be patient.
-            </CustomLabel>
-            <CustomButton disabled>Generating...</CustomButton>
-          </>
-        ) : (
-          <CustomButton onClick={() => generate(prompt)}>Generate</CustomButton>
-        )}
+        <CustomLabel>
+          Through our software we will optimize your prompt.
+        </CustomLabel>
+        <CustomButton onClick={() => generate(prompt)}>Generate</CustomButton>
       </Container>
       <Grid
         container
