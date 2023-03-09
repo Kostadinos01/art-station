@@ -15,6 +15,7 @@ const CustomButton = styled(Button)({
   fontWeight: "bolder",
   display: "flex",
   margin: "auto",
+  marginBottom: "15px",
   justifyContent: "center",
   "&:hover": {
     transition: "0.8s ease-in-out",
@@ -74,4 +75,15 @@ const CustomLabel = styled("label")({
   marginTop: "30px",
 });
 
-export { CustomInput, CustomLabel, Container, CustomButton };
+const CustomHeading = styled("h1")({
+  textAlign: "center",
+  display: "flex",
+  margin: "auto",
+  justifyContent: "center",
+  color: "white",
+  fontSize: "25px",
+  fontWeight: "bolder",
+  marginTop: "15px",
+});
+
+export { CustomInput, CustomLabel, Container, CustomButton, CustomHeading };

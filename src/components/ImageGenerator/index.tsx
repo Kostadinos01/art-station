@@ -1,5 +1,11 @@
 import { useState } from "react";
-import { Container, CustomInput, CustomButton } from "./style";
+import {
+  Container,
+  CustomInput,
+  CustomButton,
+  CustomLabel,
+  CustomHeading,
+} from "./style";
 import axios from "axios";
 import { Grid } from "@mui/material";
 import RenderedImage from "../RenderedImage";
@@ -28,6 +34,7 @@ export default function ImageGenerator() {
   return (
     <Grid>
       <Container>
+        <CustomHeading>🚀 Stable Diffusion 🚀</CustomHeading>
         <CustomInput
           type="text"
           value={prompt}
@@ -35,15 +42,23 @@ export default function ImageGenerator() {
           onKeyDown={handleEnter}
           placeholder="Type Your Prompts..."
         />
-        {/* <CustomLabel>
-          Through our software we optimazed your prompt. Feel free to edit.
-        </CustomLabel> */}
         {/* <CustomInput
           type="text"
           value={extendedPrompts}
           onChange={handleChange}
         /> */}
-        <CustomButton onClick={() => generate(prompt)}>Generate</CustomButton>
+        {image ? (
+          <>
+            <CustomButton disabled onClick={() => generate(prompt)}>
+              Generate
+            </CustomButton>
+            <CustomLabel>
+              Through our software we optimize your prompt.
+            </CustomLabel>
+          </>
+        ) : (
+          <CustomButton onClick={() => generate(prompt)}>Generate</CustomButton>
+        )}
       </Container>
       <Grid
         container
