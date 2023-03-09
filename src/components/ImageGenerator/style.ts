@@ -44,22 +44,22 @@ const CustomInput = styled("input")({
   border: "solid 3px #3fe0d0",
   borderRadius: "50px",
   backgroundColor: "#3fe0d0",
-  width: "100%",
+  width: "1200px",
   height: "2.5em",
   fontSize: "1rem",
   outline: "none",
   fontWeight: "bolder",
   "@media (max-width: 1200px)": {
-    width: "100%",
+    width: "1000px",
   },
   "@media (max-width: 1024px)": {
-    width: "75%",
+    width: "600px",
   },
   "@media (max-width: 768px)": {
-    width: "75%",
+    width: "400px",
   },
   "@media (max-width: 480px)": {
-    width: "75%",
+    width: "200px",
   },
 });
 

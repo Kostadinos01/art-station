@@ -1,14 +1,8 @@
 import React from "react";
-import Input from "./components/Input";
-import Images from "./sections/Images";
+import ImageGenerator from "./components/ImageGenerator";
 
 function App() {
-  return (
-    <>
-      <Input />
-      <Images />
-    </>
-  );
+  return <ImageGenerator />;
 }
 
 export default App;
