@@ -73,6 +73,7 @@ const CustomLabel = styled("label")({
   fontSize: "16px",
   fontWeight: "bolder",
   marginTop: "30px",
+  marginBottom: "30px",
 });
 
 const CustomHeading = styled("h1")({

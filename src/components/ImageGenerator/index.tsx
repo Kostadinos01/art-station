@@ -11,19 +11,23 @@ import { Grid } from "@mui/material";
 import RenderedImage from "../RenderedImage";
 
 export default function ImageGenerator() {
-  const [prompt, setPrompt] = useState<string | number>();
-  const [image, setImage] = useState<string | number>();
+  const [prompt, setPrompt] = useState<string | number>("");
+  const [image, setImage] = useState<string | number>("");
 
   const generate = async (prompt: any) => {
-    const result = await axios.get(`http://127.0.0.1:8000/?prompt=${prompt}`);
-    setImage(result.data);
-  };
-
-  const handleEnter = (event: any) => {
-    if (event.key === "Enter") {
-      setPrompt("");
-
-      console.log("Enter Key Pressed");
+    try {
+      const response = await axios.get(
+        `https://api-inference.huggingface.co/models/CompVis/stable-diffusion-v1-4/?prompt=${prompt}`,
+        {
+          headers: {
+            Authorization: "Bearer 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",
+          },
+          responseType: "blob",
+        }
+      );
+      setImage(URL.createObjectURL(response.data));
+    } catch (error) {
+      console.error(error);
     }
   };
 
@@ -33,28 +37,21 @@ export default function ImageGenerator() {
 
   return (
     <Grid>
-      <Container>
+      <Container onSubmit={(e) => e.preventDefault()}>
         <CustomHeading>🚀 Stable Diffusion 🚀</CustomHeading>
         <CustomInput
           type="text"
           value={prompt}
           onChange={handleChange}
-          onKeyDown={handleEnter}
           placeholder="Type Your Prompts..."
         />
-        {/* <CustomInput
-          type="text"
-          value={extendedPrompts}
-          onChange={handleChange}
-        /> */}
+
         {image ? (
           <>
-            <CustomButton disabled onClick={() => generate(prompt)}>
-              Generate
-            </CustomButton>
             <CustomLabel>
-              Through our software we optimize your prompt.
+              Through our software we optimize your prompt. Please be patient.
             </CustomLabel>
+            <CustomButton disabled>Generating...</CustomButton>
           </>
         ) : (
           <CustomButton onClick={() => generate(prompt)}>Generate</CustomButton>
@@ -62,20 +59,17 @@ export default function ImageGenerator() {
       </Container>
       <Grid
         container
-        rowSpacing={0}
-        columnSpacing={3}
         marginBottom="50px"
         display="flex"
         justifyContent="center"
         alignItems="center"
-        xs="auto"
       >
         {image ? (
           <>
-            <RenderedImage src={`data:image/png;base64,${image}`} />
-            <RenderedImage src={`data:image/png;base64,${image}`} />
-            <RenderedImage src={`data:image/png;base64,${image}`} />
-            <RenderedImage src={`data:image/png;base64,${image}`} />
+            <RenderedImage src={`${image}`} />
+            <RenderedImage src={`${image}`} />
+            <RenderedImage src={`${image}`} />
+            <RenderedImage src={`${image}`} />
           </>
         ) : null}
       </Grid>
