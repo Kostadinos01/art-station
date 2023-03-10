@@ -1,3 +1,4 @@
+/* eslint-disable no-lone-blocks */
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import { useState } from "react";
@@ -69,10 +70,7 @@ export default function ImageGenerator() {
         justifyContent="center"
         alignItems="center"
       >
-        {/* ((e: { key: string }) => e.key === "Enter")  */}
-        {((e: { key: string }) => e.key === "Enter") &&
-        input.length &&
-        imageData === null ? (
+        {input.length && imageData === null ? (
           <div>
             <CustomLabel>Generating your image. Please be patient.</CustomLabel>
             <div>

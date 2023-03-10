@@ -1,23 +1,23 @@
 import { styled } from "@mui/material/styles";
 
 const CustomImage = styled("img")({
-  width: "400",
-  height: "400px",
+  width: "1000",
+  height: "1000px",
   marginTop: "50px",
   "@media (max-width: 1200px)": {
-    width: "400",
-    height: "400px",
+    width: "800px",
+    height: "800px",
   },
   "@media (max-width: 1024px)": {
-    width: "400",
-    height: "400px",
+    width: "600px",
+    height: "600px",
   },
   "@media (max-width: 768px)": {
-    width: "300",
-    height: "300px",
+    width: "500px",
+    height: "500px",
   },
   "@media (max-width: 480px)": {
-    width: "300",
+    width: "300px",
     height: "300px",
   },
 });
