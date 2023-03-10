@@ -1,6 +1,3 @@
-/* eslint-disable no-lone-blocks */
-/* eslint-disable jsx-a11y/alt-text */
-/* eslint-disable jsx-a11y/img-redundant-alt */
 import { useState } from "react";
 import {
   Container,
@@ -17,9 +14,11 @@ import RenderedImage from "../RenderedImage";
 export default function ImageGenerator() {
   const [input, setInput] = useState("");
   const [imageData, setImageData] = useState<Blob | null>(null);
+  const [generatingImage, setGeneratingImage] = useState(false);
 
   const handleSubmit = async () => {
     try {
+      setGeneratingImage(true); // Set generatingImage to true to show the loading spinner
       const response = await axios.post(
         "https://api-inference.huggingface.co/models/CompVis/stable-diffusion-v1-4",
         { inputs: input },
@@ -32,6 +31,7 @@ export default function ImageGenerator() {
         }
       );
       setImageData(response.data);
+      setGeneratingImage(false); // Set generatingImage back to false to hide the loading spinner
     } catch (error) {
       console.error(error);
     }
@@ -40,6 +40,13 @@ export default function ImageGenerator() {
   const handleInputClear = () => {
     setInput("");
     setImageData(null);
+    setGeneratingImage(false); // Set generatingImage back to false to hide the loading spinner
+  };
+
+  const handleKeyPress = (event: { keyCode: number }) => {
+    if (event.keyCode === 13) {
+      handleSubmit(); // Call handleSubmit to trigger the API request and show the loading spinner
+    }
   };
 
   return (
@@ -52,7 +59,7 @@ export default function ImageGenerator() {
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            onKeyDown={(e) => e.key === "Enter"}
+            onKeyDown={handleKeyPress}
             placeholder="Type Your Prompts..."
           />
         </form>
@@ -70,7 +77,7 @@ export default function ImageGenerator() {
         justifyContent="center"
         alignItems="center"
       >
-        {input.length && imageData === null ? (
+        {generatingImage ? (
           <div>
             <CustomLabel>Generating your image. Please be patient.</CustomLabel>
             <div>
