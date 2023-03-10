@@ -9,14 +9,14 @@ import {
 } from "./style";
 import axios from "axios";
 import { Grid } from "@mui/material";
+import LoadingSpinner from "../LoadingSpinner";
 // import RenderedImage from "../RenderedImage";
 
 export default function ImageGenerator() {
   const [input, setInput] = useState("");
   const [imageData, setImageData] = useState<Blob | null>(null);
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const handleSubmit = async () => {
     try {
       const response = await axios.post(
         "https://api-inference.huggingface.co/models/CompVis/stable-diffusion-v1-4",
@@ -33,6 +33,10 @@ export default function ImageGenerator() {
     } catch (error) {
       console.error(error);
     }
+  };
+
+  const handleInputClear = () => {
+    setImageData(null);
   };
 
   return (
@@ -53,7 +57,7 @@ export default function ImageGenerator() {
           Through our software we will optimize your prompt.
         </CustomLabel>
 
-        <CustomButton type="submit">Generate</CustomButton>
+        <CustomButton onClick={handleInputClear}>Clear</CustomButton>
       </Container>
       <Grid
         container
@@ -62,7 +66,16 @@ export default function ImageGenerator() {
         justifyContent="center"
         alignItems="center"
       >
-        {imageData && <img src={URL.createObjectURL(imageData)} alt="Image" />}
+        {input.length && imageData === null ? (
+          <div>
+            <CustomLabel>Generating your image. Please be patient.</CustomLabel>
+            <div>
+              <LoadingSpinner />
+            </div>
+          </div>
+        ) : (
+          imageData && <img src={URL.createObjectURL(imageData)} alt="Image" />
+        )}{" "}
       </Grid>
     </Grid>
   );

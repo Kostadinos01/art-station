@@ -2,8 +2,8 @@ import { styled } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 
 const CustomButton = styled(Button)({
-  width: "140px",
-  height: "50px",
+  width: "100px",
+  height: "40px",
   cursor: "pointer",
   border: "1px solid #3fe0d0",
   borderRadius: "50px",
