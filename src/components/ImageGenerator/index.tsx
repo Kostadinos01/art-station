@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import { useState } from "react";
 import {
@@ -10,7 +11,7 @@ import {
 import axios from "axios";
 import { Grid } from "@mui/material";
 import LoadingSpinner from "../LoadingSpinner";
-// import RenderedImage from "../RenderedImage";
+import RenderedImage from "../RenderedImage";
 
 export default function ImageGenerator() {
   const [input, setInput] = useState("");
@@ -36,6 +37,7 @@ export default function ImageGenerator() {
   };
 
   const handleInputClear = () => {
+    setInput("");
     setImageData(null);
   };
 
@@ -49,6 +51,7 @@ export default function ImageGenerator() {
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter"}
             placeholder="Type Your Prompts..."
           />
         </form>
@@ -74,8 +77,8 @@ export default function ImageGenerator() {
             </div>
           </div>
         ) : (
-          imageData && <img src={URL.createObjectURL(imageData)} alt="Image" />
-        )}{" "}
+          imageData && <RenderedImage src={URL.createObjectURL(imageData)} />
+        )}
       </Grid>
     </Grid>
   );
