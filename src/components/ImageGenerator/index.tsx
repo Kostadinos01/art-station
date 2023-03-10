@@ -69,7 +69,10 @@ export default function ImageGenerator() {
         justifyContent="center"
         alignItems="center"
       >
-        {input.length && imageData === null ? (
+        {/* ((e: { key: string }) => e.key === "Enter")  */}
+        {((e: { key: string }) => e.key === "Enter") &&
+        input.length &&
+        imageData === null ? (
           <div>
             <CustomLabel>Generating your image. Please be patient.</CustomLabel>
             <div>
