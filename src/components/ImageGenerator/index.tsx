@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/img-redundant-alt */
 import { useState } from "react";
 import {
   Container,
@@ -8,47 +9,51 @@ import {
 } from "./style";
 import axios from "axios";
 import { Grid } from "@mui/material";
-import RenderedImage from "../RenderedImage";
+// import RenderedImage from "../RenderedImage";
 
 export default function ImageGenerator() {
-  const [prompt, setPrompt] = useState<string>("");
-  const [image, setImage] = useState<string>("");
+  const [input, setInput] = useState("");
+  const [imageData, setImageData] = useState<Blob | null>(null);
 
-  const generate = async (prompt: any) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     try {
-      const response = await axios.get(
-        `https://api-inference.huggingface.co/models/CompVis/stable-diffusion-v1-4/?prompt=${prompt}`,
+      const response = await axios.post(
+        "https://api-inference.huggingface.co/models/CompVis/stable-diffusion-v1-4",
+        { inputs: input },
         {
           headers: {
             Authorization: "Bearer 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",
+            "Content-Type": "application/json",
           },
           responseType: "blob",
         }
       );
-      setImage(URL.createObjectURL(response.data));
+      setImageData(response.data);
     } catch (error) {
       console.error(error);
     }
-  };
-
-  const handleChange = (event: any) => {
-    setPrompt(event.target.value);
   };
 
   return (
     <Grid>
       <Container onSubmit={(e) => e.preventDefault()}>
         <CustomHeading>🚀 Stable Diffusion 🚀</CustomHeading>
-        <CustomInput
-          type="text"
-          value={prompt}
-          onChange={handleChange}
-          placeholder="Type Your Prompts..."
-        />
+
+        <form onSubmit={handleSubmit}>
+          <CustomInput
+            type="text"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            placeholder="Type Your Prompts..."
+          />
+        </form>
+
         <CustomLabel>
           Through our software we will optimize your prompt.
         </CustomLabel>
-        <CustomButton onClick={() => generate(prompt)}>Generate</CustomButton>
+
+        <CustomButton type="submit">Generate</CustomButton>
       </Container>
       <Grid
         container
@@ -57,14 +62,7 @@ export default function ImageGenerator() {
         justifyContent="center"
         alignItems="center"
       >
-        {image ? (
-          <>
-            <RenderedImage src={`${image}`} />
-            <RenderedImage src={`${image}`} />
-            <RenderedImage src={`${image}`} />
-            <RenderedImage src={`${image}`} />
-          </>
-        ) : null}
+        {imageData && <img src={URL.createObjectURL(imageData)} alt="Image" />}
       </Grid>
     </Grid>
   );
