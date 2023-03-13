@@ -1,6 +1,8 @@
 import * as React from "react";
 import Grid from "@mui/material/Unstable_Grid2";
-import { CustomImage } from "./style";
+import { CustomIcon, CustomImage } from "./style";
+
+import downloadIcon from "../../assets/folder-download.png";
 
 interface CustomProps {
   src: string;
@@ -9,7 +11,9 @@ interface CustomProps {
 export default function RenderedImage({ src }: CustomProps) {
   return (
     <Grid>
-      <CustomImage src={src} />
+      <CustomImage src={src}>
+        <CustomIcon src={downloadIcon} />
+      </CustomImage>
     </Grid>
   );
 }

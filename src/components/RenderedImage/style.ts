@@ -4,6 +4,7 @@ const CustomImage = styled("img")({
   width: "1000",
   height: "1000px",
   marginTop: "50px",
+
   "@media (max-width: 1200px)": {
     width: "800px",
     height: "800px",
@@ -22,4 +23,9 @@ const CustomImage = styled("img")({
   },
 });
 
-export { CustomImage };
+const CustomIcon = styled("img")({
+  display: "flex",
+  position: "relative",
+});
+
+export { CustomImage, CustomIcon };
