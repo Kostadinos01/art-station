@@ -1,8 +1,6 @@
 import * as React from "react";
 import Grid from "@mui/material/Unstable_Grid2";
-import { CustomIcon, CustomImage } from "./style";
-
-import downloadIcon from "../../assets/folder-download.png";
+import { CustomImage } from "./style";
 
 interface CustomProps {
   src: string;
