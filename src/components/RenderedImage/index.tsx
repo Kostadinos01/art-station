@@ -11,9 +11,8 @@ interface CustomProps {
 export default function RenderedImage({ src }: CustomProps) {
   return (
     <Grid>
-      <CustomImage src={src}>
-        <CustomIcon src={downloadIcon} />
-      </CustomImage>
+      {/* <CustomIcon src={downloadIcon} /> */}
+      <CustomImage src={src}></CustomImage>
     </Grid>
   );
 }
