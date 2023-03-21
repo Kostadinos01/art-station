@@ -5,6 +5,7 @@ import {
   CustomButton,
   CustomLabel,
   CustomHeading,
+  CustomSubtitle,
 } from "./style";
 import axios from "axios";
 import { Grid } from "@mui/material";
@@ -54,6 +55,11 @@ export default function ImageGenerator() {
       <Container onSubmit={(e) => e.preventDefault()}>
         <CustomHeading>🚀 Stable Diffusion 🚀</CustomHeading>
 
+        <CustomSubtitle>
+          Take your fantasy to another level in a simple way. Just write it
+          down!
+        </CustomSubtitle>
+
         <form onSubmit={handleSubmit}>
           <CustomInput
             type="text"
@@ -65,7 +71,7 @@ export default function ImageGenerator() {
         </form>
 
         <CustomLabel>
-          Through our software we will optimize your prompt.
+          Through our software we will optimize your prompt. Try it 😎
         </CustomLabel>
 
         <CustomButton onClick={handleInputClear}>Clear</CustomButton>

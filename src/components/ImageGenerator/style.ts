@@ -87,4 +87,21 @@ const CustomHeading = styled("h1")({
   marginTop: "15px",
 });
 
-export { CustomInput, CustomLabel, Container, CustomButton, CustomHeading };
+const CustomSubtitle = styled("h3")({
+  color: "white",
+  fontSize: "14px",
+  textAlign: "center",
+  display: "flex",
+  margin: "auto",
+  justifyContent: "center",
+  marginTop: "10px",
+});
+
+export {
+  CustomInput,
+  CustomLabel,
+  Container,
+  CustomButton,
+  CustomHeading,
+  CustomSubtitle,
+};
