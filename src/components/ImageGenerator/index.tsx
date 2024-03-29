@@ -19,7 +19,7 @@ export default function ImageGenerator() {
 
   const handleSubmit = async () => {
     try {
-      setGeneratingImage(true); // Set generatingImage to true to show the loading spinner
+      setGeneratingImage(true);
       const response = await axios.post(
         "https://api-inference.huggingface.co/models/CompVis/stable-diffusion-v1-4",
         { inputs: input },
@@ -31,8 +31,16 @@ export default function ImageGenerator() {
           responseType: "blob",
         }
       );
-      setImageData(response.data);
-      setGeneratingImage(false); // Set generatingImage back to false to hide the loading spinner
+      // const response = await openai.createImage({
+      //   prompt: "a white siamese cat",
+      //   n: 1,
+      //   size: "1024x1024",
+      // });
+
+      const image_url = response.data.data[0].url;
+
+      setImageData(image_url);
+      setGeneratingImage(false);
     } catch (error) {
       console.error(error);
     }
@@ -41,12 +49,12 @@ export default function ImageGenerator() {
   const handleInputClear = () => {
     setInput("");
     setImageData(null);
-    setGeneratingImage(false); // Set generatingImage back to false to hide the loading spinner
+    setGeneratingImage(false);
   };
 
   const handleKeyPress = (event: { keyCode: number }) => {
     if (event.keyCode === 13) {
-      handleSubmit(); // Call handleSubmit to trigger the API request and show the loading spinner
+      handleSubmit();
     }
   };
 
